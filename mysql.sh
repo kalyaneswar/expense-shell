@@ -13,6 +13,9 @@ G=$(tput setaf 2)
 N=$(tput sgr0)
 Y=$(tput setaf 3)
 
+echo "Please enter DB password:"
+read -s mysql_root_password
+
 VALIDATE(){
     # echo "Exist status: $1"
     # echo "What are you doing : $2"
@@ -47,10 +50,10 @@ VALIDATE $? "Start MySql server"
 # VALIDATE $? "Setting up root  MySql passwd"
 
 # Below code is useful for idempotency nature
-mysql -h db.kalyaneswar.online -uroot -pExpenseApp@1 -e 'SHOW DATABASES;' &>>$LOGFILE
+mysql -h db.kalyaneswar.online -uroot -p${mysql_root_password} -e 'SHOW DATABASES;' &>>$LOGFILE
 if [ $? -ne 0]
 then
-    mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
+    mysql_secure_installation --set-root-pass ${mysql_root_password} &>>$LOGFILE
     VALIDATE $? "Setting up root password"
 else
     echo -e "MySQL root password is already setup..$Y SKIPPING $N"
