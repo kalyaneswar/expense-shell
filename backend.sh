@@ -4,14 +4,14 @@ USERID=$(id -u)
 TIMESTAMP=$(date +%F-%H-%M-%S)
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
-R="\e[31m"
-G="\e[32m"
-N="\e[0m"
-Y="\e[33m"
-# R=$(tput setaf 1)
-# G=$(tput setaf 2)
-# N=$(tput sgr0)
-# Y=$(tput setaf 3)
+# R="\e[31m"
+# G="\e[32m"
+# N="\e[0m"
+# Y="\e[33m"
+R=$(tput setaf 1)
+G=$(tput setaf 2)
+N=$(tput sgr0)
+Y=$(tput setaf 3)
 
 
 VALIDATE(){
