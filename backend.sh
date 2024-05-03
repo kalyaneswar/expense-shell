@@ -13,8 +13,6 @@ Y="\e[33m"
 # N=$(tput sgr0)
 # Y=$(tput setaf 3)
 
-echo "Please enter DB password:"
-read -s mysql_root_password
 
 VALIDATE(){
     # echo "Exist status: $1"
@@ -50,13 +48,14 @@ if [ $? -ne 0 ]
 then
     useradd expense 
     useradd expense &>>$LOGFILE
+    VALIDATE  $? "Create user expense"
 else
     echo -e "expense user already exist..$Y SKIPPING $N"
 fi
-VALIDATE  $? "Create user expense"
-mkdir /app
-curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-cd /app
-unzip /tmp/backend.zip
-cd /app
-npm install
+
+# mkdir /app
+# curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+# cd /app
+# unzip /tmp/backend.zip
+# cd /app
+# npm install
