@@ -88,3 +88,6 @@ VALIDATE  $? "Schema loading"
 
 systemctl restart backend &>>$LOGFILE
 VALIDATE  $? "Restart Backend"
+
+# systemctl status backend
+# netstat -lntp
